@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="stylesheet" type="text/css" href="{% static 'contact.css' %}">
+    <title>Contact Book</title>
+    <style>
+        body{
+            background-color:#fff3ed;
+            font-family:sans-serif;
+        }
+        .change{
+            font-size: 30px;
+        }
+        .table-container
+        {
+            padding:0 10%;
+            margin:40px auto 0;
+        }
+        .heading 
+        {
+            font-size: 40 px;
+            text-align: center;
+            color:#f1f1f1;
+            margin-bottom:40px;
+        }
+        .table 
+        {
+            width:100%;
+            border-collapse:collapse;
+        }
+        .table thead 
+        {
+            background-color:#0000FF;
+        }
+        .table thead tr th 
+        {
+            font-size:14px;
+            font-weight:600;
+            letter-spacing:0.35px;
+            color: #FFFFFF;
+            opacity:1;
+            padding:12px;
+            vertical-align:top;
+            border:1px solid #000000;
+        }
+        .table tbody tr td 
+        {
+            font-size:14 px;
+            Letter-spacing:0.35px;
+            font-weight:normal;
+            background-color:#3cf44;
+            padding:8 px;
+            text-align:center;
+            border:1px solid #000000;
+        }
+        </style>
+</head>
+<body>
+    <h1>EDIT Contact</h1>
+   <div class="change">
+    <form action="{% url 'formupdate' Data.id %}" class="form-inline" method="post" onsubmit="return changes()">
+        {% csrf_token %}
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" style="font-size:22pt;" placeholder="Enter First  Name" name="firstname" value={{Data.FirstName}}>
+        <br><br><label for = "lastname">Last Name:</label>
+        <input type="text" id="lastname" style="font-size:22pt;" placeholder="Enter Last  Name" name="lastname" value={{Data.LastName}}>
+        <br><br><label for="email">Email:</label>
+        <input type="email" id="email" style="font-size:22pt;" placeholder="Enter email" name="email" value={{Data.Email}}>
+        <br><br><label for="phone">Contact Number:</label>
+        <input type="phone" id="phone" name="phone" style="font-size:22pt;" placeholder="Enter Contact Number" value={{Data.Phone}}>
+        <br><br><button type="submit" style="font-size:24pt;">Save Changes</button>
+    </form>
+   </div>
+    <br><br>
+    <script>
+        function changes(){
+            if (firstname.length==0 && lastname.length==0){
+                confirm("Name is empty. Do you want to still save it?");
+            }
+           alert("Changes Saved!");
+        }
+    </script>
+</body>
+
+
+</html>
